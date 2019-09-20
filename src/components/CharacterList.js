@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import CharacterCard from './CharacterCard';
+import SearchForm from './SearchForm';
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
@@ -19,13 +20,25 @@ export default function CharacterList() {
           })
   }, []);
 
+    const searchCharacter = (characterFilter) => {
+      let filteredCharacters = character;
+      filteredCharacters = filteredCharacters.filter((character) => {
+        let characterName = character.name.toLowerCase()
+        return characterName.indexOf(
+          characterFilter.toLowerCase() !== -1
+        )
+      })
+      setCharacter(filteredCharacters)
+    }
+
   return (
     <section className="character-list">
       <h2>
       {character.map(character => {
-        return <CharacterCard character={character}/>
+        return <CharacterCard key={Math.random()} character={character}/>
       })}
       </h2>
+      <SearchForm searchCharacter={searchCharacter} />
     </section>
   );
 }
