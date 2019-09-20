@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const Image = styled.img`
   display: flex;
-  margin-left: 350px;
+  margin-left: 300px;
+  height: 500px;
 `
 
 export default function WelcomePage() {

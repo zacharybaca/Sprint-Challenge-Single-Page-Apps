@@ -21,6 +21,7 @@ export default function CharacterList() {
   }, []);
 
     const searchCharacter = (characterFilter) => {
+
       let filteredCharacters = character;
       filteredCharacters = filteredCharacters.filter((character) => {
         let characterName = character.name.toLowerCase()
@@ -33,12 +34,13 @@ export default function CharacterList() {
 
   return (
     <section className="character-list">
+      <SearchForm searchCharacter={searchCharacter} />
       <h2>
       {character.map(character => {
         return <CharacterCard key={Math.random()} character={character}/>
       })}
       </h2>
-      <SearchForm searchCharacter={searchCharacter} />
+      
     </section>
   );
 }
